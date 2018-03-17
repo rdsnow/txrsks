@@ -156,13 +156,14 @@ def minutes_to_chronograph_format(minutes):  # 转为整数秒数为00:00:00.00�
 def main():
     while login_site() is False:  # 登陆网站，并显示登陆状态
         pass
-    try:
-        res_ucen = s.get('http://txrsks.gov.cn/course/Ucen.jsp')  # 用户中心页面地址
-        parse_ucen(res_ucen.text)  # 解析用户中心页面，显示在学课程
-    except (requests.RequestException, requests.exceptions.ConnectionError):
-        print('~~~~(>_<)~~~~ 网络连接错误......')
-        sys.exit()
     while True:
+        try:
+            res_ucen = s.get('http://txrsks.gov.cn/course/Ucen.jsp')  # 用户中心页面地址
+            parse_ucen(res_ucen.text)  # 解析用户中心页面，显示在学课程
+        except (requests.RequestException, requests.exceptions.ConnectionError):
+            print('~~~~(>_<)~~~~ 网络连接错误......')
+            sys.exit()
+
         print(' Please input course_id '.center(90, '*'))
         print('请输入想要挂机课程ID，输入大于0的数字选择相应的课程，输入非数字退出此程序')
         course_id = input('Please input "course_id" = ')
